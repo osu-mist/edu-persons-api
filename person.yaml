@@ -1,0 +1,89 @@
+PersonDType:
+    description: ...tbd (Class description)...
+    type: object    # OSU does not explicitly define a type at this level
+    properties:     # this top level 'properties' object contains the attributes of the person, as well as the UID
+                    #   OSU splits UID, type, and links at higher level, and attributes at lower level
+                    #   OSU has UID under properties, data, properties. OSU has attributes under properties, data, properties, attributes
+                    #   OSU links object has no analog here
+      sourcedId:    # OSU's UID is a 9 digit OSU ID
+        description: 'Model Primitive Datatype = String. All Objects MUST be identified by a Source Identifier. This is a GUID i.e. a unique system interoperability identifier for an object. This is the GUID that SYSTEMS will refer to when making API calls, or when needing to identify an object. For EDU-API the GUID MUST be a valid UUID.  It is RECOMMENDED that systems are able to map whichever local identifiers (e.g. database key fields) they use to the corresponding SourcedId. The sourcedId of an object is considered an addressable property of an entity and as such will not be treated as Personally Identifiable Information (PII) by certified products. Therefore, as a part of certification, vendors will be required to declare that they will notify customers via documentation or other formal and documented agreement that sourcedIds should never contain PII in general, but particularly users. This means that if a customer includes a student name in an enrollment.sourcedId, it will not fall to any certified product to protect the enrollment.sourcedId as PII, or even the userSourcedId field in the enrollment record.'
+        type: string
+      status:       # OSU has employeeStatus with an enum of characters as allowed values, eg. A - Active, F - Leave with pay and with benefits
+                    #   Persons are never 'tobedeleted', and remain in system as 'T - Terminated'
+        description: 'All objects MUST BE either ''active'' or ''tobedeleted''. Something which is flagged ''tobedeleted'' is to be considered safe to delete. Systems can delete records that are flagged as such if they wish, but they are not under any compulsion to do so.'
+        type: string
+        enum:
+          - ACTIVE
+          - TOBEDELETED
+      dateLastModified:     # no OSU analog
+        description: 'Model Primitive Datatype = DateTime. All objects MUST be annotated with the dateTime upon which they were last modified. This enables requesters to query for just the latest objects. DateTimes MUST be expressed in W3C profile of [ISO 8601] and MUST contain the UTC timezone.'
+        type: string
+        format: date-time
+      metadata:     # allows for adding attributes unique to each university? no relation to JSON meta
+                    #   OSU has several different attributes (and endpoints) returning data not included in this design
+                    #   Is the expectation to include all of that here?
+        $ref: '#/definitions/MetadataDType'
+      formattedName:    # OSU has first, middle, last name attributes of string type. OSU assumes preferred name.
+                        #   not sure why a formatting the name is an API function given that this information is
+                        #   returned in the name attribute. OSU APIs tend to return more fundamental data structures,
+                        #   so that applications can format that data however they see fit.
+        description: ...tbd (ComplexType property description)...
+        type: array
+        minItems: 1
+        items:
+          $ref: '#/definitions/FormattedNameDType'
+      name:     # this returns each word in name with associated type (eg. FIRST, LAST). Closer to OSU's approach
+                #   a neat approach, but more difficult to obtain only first name. User would have to request entire
+                #   name object, and then loop through each entry checking for type 'FIRST'.
+        description: ...tbd (ComplexType property description)...
+        type: array
+        minItems: 1
+        items:
+          $ref: '#/definitions/NameDType'
+      address:      # OSU returns addresses at a seperate endpoint /persons/{osuID}/addresses
+                    #   both return arrays of objects containing address type and address
+                    #   both split address components (eg. addressLine1, city). IMS is not fully defined.
+        description: ...tbd (ComplexType property description)...
+        type: array
+        minItems: 0
+        items:
+          $ref: '#/definitions/AddressDType'
+      contactInfo:     # OSU contains different attributes for primary phone, mobile phone, etc.
+                       #    OSU does not return email (but does return ONID username)
+                       #    IMS also does not return email
+        description: ...tbd (ComplexType property description)...
+        type: array
+        minItems: 0
+        items:
+          $ref: '#/definitions/ContactInfoDType'
+      demographics:     # no OSU analog
+        $ref: '#/definitions/DemographicsDType'
+      role:     # OSU has boolean attributes currentStudent, currentEmployee.
+                #   No analog for administrator, aide, guardian, parant, etc.
+                #   Not sure why roleType exists. What determines a person's 'primary' role? Who decides this?
+        description: ...tbd (ComplexType property description)...
+        type: array
+        minItems: 0
+        items:
+          $ref: '#/definitions/RoleDType'
+      agent:    # no OSU analog. References another person by UID. Would make sense to include as a related
+                #   resource in JSON spec given that an agent is a person themself.
+        description: ...tbd (ComplexType property description)...
+        type: array
+        minItems: 0
+        items:
+          $ref: '#/definitions/AgentDType'
+      credentials:      # no OSU analog. Not sure what the purpose of this object is. What possible 'types'
+                        #   does username have? Should type be an enum instead of a string?
+        description: ...tbd (ComplexType property description)...
+        type: array
+        minItems: 0
+        items:
+          $ref: '#/definitions/CredentialsDType'
+    required:
+      - sourcedId
+      - status
+      - dateLastModified
+      - formattedName
+      - name
+    additionalProperties: false
