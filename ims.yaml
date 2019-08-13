@@ -48,7 +48,7 @@ paths:
           allowEmptyValue: false
         - name: sort
           in: query
-          description: 'Identifies the sort criteria to be used for the records in the response message. Use with the orderBy parameter. The sort order should follow the [UNICODE, 16] standard.'
+          description: 'Identifies the sort criteria to be used for the records in the response. Multiple criteria should be comma-seperated (U+002C COMMA, “,”) and are applied in the order provided. Each field defaults to ascending order, unless prefixed with U+002D HYPHEN-MINUS, “-“ to indicate descending order.'
           required: false
           type: string
           allowEmptyValue: false
