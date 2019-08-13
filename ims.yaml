@@ -91,7 +91,7 @@ paths:
           schema:
             $ref: '#/definitions/imsx_StatusInfoDType'
         '429':
-          description: 'The server is receiving too many requests i.e. ''server_busy''. Retry at a later time. This would be accompanied by the ''codeMajor/severity'' values of ''failure/error''. '
+          description: 'User has exceeded their rate limit. This would be accompanied by the ''codeMajor/severity'' values of ''failure/error''. '
           schema:
             $ref: '#/definitions/imsx_StatusInfoDType'
         '500':
