@@ -102,10 +102,6 @@ paths:
           description: 'This code should be used only if there is catastrophic error and there is not a more appropriate code i.e. ''internal_server_error''. This would be accompanied by the ''codeMajor/severity'' values of ''failure/error''. '
           schema:
             $ref: '#/definitions/imsx_StatusInfoDType'
-        default:
-          description: 'This is the default error response when no other appropriate code is available.  This would be accompanied by the ''codeMajor/severity'' values of ''failure/error''. '
-          schema:
-            $ref: '#/definitions/imsx_StatusInfoDType'
   '/persons/{sourcedId}':
     get:
       operationId: getPerson
