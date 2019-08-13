@@ -90,10 +90,6 @@ paths:
           description: 'This is used to indicate that the server can be reached and process the request but refuses to take any further action i.e. ''forbidden''. This would be accompanied by the ''codeMajor/severity'' values of ''failure/error''. '
           schema:
             $ref: '#/definitions/imsx_StatusInfoDType'
-        '422':
-          description: 'This error condition may occur if a JSON request body contains well-formed (i.e. syntactically correct), but semantically erroneous, JSON instructions. This would be accompanied by the ''codeMajor/severity'' values of ''failure/error''. '
-          schema:
-            $ref: '#/definitions/imsx_StatusInfoDType'
         '429':
           description: 'The server is receiving too many requests i.e. ''server_busy''. Retry at a later time. This would be accompanied by the ''codeMajor/severity'' values of ''failure/error''. '
           schema:
