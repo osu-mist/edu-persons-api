@@ -98,7 +98,7 @@ paths:
           description: 'This code should be used only if there is catastrophic error and there is not a more appropriate code i.e. ''internal_server_error''. This would be accompanied by the ''codeMajor/severity'' values of ''failure/error''. '
           schema:
             $ref: '#/definitions/ErrorResult'
-  '/persons/{sourcedId}':
+  '/persons/{id}':
     get:
       operationId: getPerson
       summary: The REST read request message for the getPerson() API call.
@@ -106,7 +106,7 @@ paths:
         - PersonsManagement
       description: ...not supplied...
       parameters:
-        - name: sourcedId
+        - name: id
           in: path
           description: ...tbd...
           required: true
