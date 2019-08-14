@@ -77,7 +77,7 @@ paths:
         '200':
           description: The request was successfully completed and a collection has been returned. This would be accompanied by the 'codeMajor/severity' values of 'success/status' and for a REST binding a HTTP code of '200'.
           schema:
-            $ref: '#/definitions/PersonSetDType'
+            $ref: '#/definitions/PersonSetResult'
         '400':
           description: 'Either an invalid selection field or invalid filter selection was supplied and data filtering on the selection criteria was not possible i.e. ''invalid_selection_field'' or  ''invalid_filter_field'' respectively. This is accompanied by the ''codeMajor/severity'' values of ''failure/error''. '
           schema:
@@ -573,16 +573,15 @@ definitions:
       - formattedName
       - name
     additionalProperties: false
-  PersonSetDType:
+  PersonSetResult:
     description: ...tbd (Class description)...
     type: object
     properties:
-      persons:
-        description: ...tbd (ComplexType property description)...
+      data:
         type: array
         minItems: 0
         items:
-          $ref: '#/definitions/PersonDType'
+          $ref: '#/definitions/PersonResource'
     additionalProperties: false
   RoleDType:
     description: ...tbd (Class description)...
