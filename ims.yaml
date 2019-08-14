@@ -124,7 +124,7 @@ paths:
         '200':
           description: The request was successfully completed and a record has been returned. This would be accompanied by the 'codeMajor/severity' values of 'success/status' and for a REST binding a HTTP code of '200'.
           schema:
-            $ref: '#/definitions/SinglePersonDType'
+            $ref: '#/definitions/PersonResult'
         '400':
           description: 'Either an invalid selection field or invalid filter selection was supplied and data filtering on the selection criteria was not possible i.e. ''invalid_selection_field'' or  ''invalid_filter_field'' respectively. This is accompanied by the ''codeMajor/severity'' values of ''failure/error''. '
           schema:
@@ -571,6 +571,13 @@ definitions:
           - formattedName
           - name
         additionalProperties: false
+  PersonResult:
+    description: ...tbd (Class description)...
+    type: object
+    properties:
+      data:
+        $ref: '#/definitions/PersonResource'
+    additionalProperties: false
   PersonSetResult:
     description: ...tbd (Class description)...
     type: object
@@ -606,15 +613,6 @@ definitions:
       - roleType
       - role
       - organization
-    additionalProperties: false
-  SinglePersonDType:
-    description: ...tbd (Class description)...
-    type: object
-    properties:
-      person:
-        $ref: '#/definitions/PersonDType'
-    required:
-      - person
     additionalProperties: false
   imsx_CodeMinorDType:
     description: This is the container for the set of code minor status codes reported in the responses from the Service Provider.
