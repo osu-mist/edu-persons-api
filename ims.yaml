@@ -203,7 +203,7 @@ paths:
         - PersonsManagement
       description: ...not supplied...
       parameters:
-        - name: sourcedId
+        - name: id
           in: path
           description: ...tbd...
           required: true
