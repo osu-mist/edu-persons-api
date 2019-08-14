@@ -215,7 +215,7 @@ paths:
           schema:
             $ref: '#/definitions/PersonResource'
       responses:
-        '201':
+        '200':
           description: ...tbd (Response description)...
           schema:
             $ref: '#/definitions/PersonResult'
