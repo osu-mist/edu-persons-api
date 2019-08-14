@@ -196,7 +196,7 @@ paths:
           description: 'This code should be used only if there is catastrophic error and there is not a more appropriate code i.e. ''internal_server_error''. This would be accompanied by the ''codeMajor/severity'' values of ''failure/error''. '
           schema:
             $ref: '#/definitions/ErrorResult'
-    put:
+    patch:
       operationId: putPerson
       summary: The REST create request message for the putPerson() API call.
       tags:
