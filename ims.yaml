@@ -503,76 +503,78 @@ definitions:
       - namePartType
       - name
     additionalProperties: false
-  PersonDType:
+  PersonResource:
     description: ...tbd (Class description)...
     type: object
     properties:
-      sourcedId:
-        description: 'Model Primitive Datatype = String. All Objects MUST be identified by a Source Identifier. This is a GUID i.e. a unique system interoperability identifier for an object. This is the GUID that SYSTEMS will refer to when making API calls, or when needing to identify an object. For EDU-API the GUID MUST be a valid UUID.  It is RECOMMENDED that systems are able to map whichever local identifiers (e.g. database key fields) they use to the corresponding SourcedId. The sourcedId of an object is considered an addressable property of an entity and as such will not be treated as Personally Identifiable Information (PII) by certified products. Therefore, as a part of certification, vendors will be required to declare that they will notify customers via documentation or other formal and documented agreement that sourcedIds should never contain PII in general, but particularly users. This means that if a customer includes a student name in an enrollment.sourcedId, it will not fall to any certified product to protect the enrollment.sourcedId as PII, or even the userSourcedId field in the enrollment record.'
+      id:
         type: string
-      status:
-        description: 'All objects MUST BE either ''active'' or ''tobedeleted''. Something which is flagged ''tobedeleted'' is to be considered safe to delete. Systems can delete records that are flagged as such if they wish, but they are not under any compulsion to do so.'
-        type: string
-        enum:
-          - ACTIVE
-          - TOBEDELETED
-      dateLastModified:
-        description: 'Model Primitive Datatype = DateTime. All objects MUST be annotated with the dateTime upon which they were last modified. This enables requesters to query for just the latest objects. DateTimes MUST be expressed in W3C profile of [ISO 8601] and MUST contain the UTC timezone.'
-        type: string
-        format: date-time
-      metadata:
-        $ref: '#/definitions/MetadataDType'
-      formattedName:
-        description: ...tbd (ComplexType property description)...
-        type: array
-        minItems: 1
-        items:
-          $ref: '#/definitions/FormattedNameDType'
-      name:
-        description: ...tbd (ComplexType property description)...
-        type: array
-        minItems: 1
-        items:
-          $ref: '#/definitions/NameDType'
-      address:
-        description: ...tbd (ComplexType property description)...
-        type: array
-        minItems: 0
-        items:
-          $ref: '#/definitions/AddressDType'
-      contactInfo:
-        description: ...tbd (ComplexType property description)...
-        type: array
-        minItems: 0
-        items:
-          $ref: '#/definitions/ContactInfoDType'
-      demographics:
-        $ref: '#/definitions/DemographicsDType'
-      role:
-        description: ...tbd (ComplexType property description)...
-        type: array
-        minItems: 0
-        items:
-          $ref: '#/definitions/RoleDType'
-      agent:
-        description: ...tbd (ComplexType property description)...
-        type: array
-        minItems: 0
-        items:
-          $ref: '#/definitions/AgentDType'
-      credentials:
-        description: ...tbd (ComplexType property description)...
-        type: array
-        minItems: 0
-        items:
-          $ref: '#/definitions/CredentialsDType'
-    required:
-      - sourcedId
-      - status
-      - dateLastModified
-      - formattedName
-      - name
-    additionalProperties: false
+        description: 'A unique identifier. All Objects MUST be identified by a Source Identifier. This is a GUID i.e. a unique system interoperability identifier for an object. This is the GUID that SYSTEMS will refer to when making API calls, or when needing to identify an object. For EDU-API the GUID MUST be a valid UUID.  It is RECOMMENDED that systems are able to map whichever local identifiers (e.g. database key fields) they use to the corresponding SourcedId. The sourcedId of an object is considered an addressable property of an entity and as such will not be treated as Personally Identifiable Information (PII) by certified products. Therefore, as a part of certification, vendors will be required to declare that they will notify customers via documentation or other formal and documented agreement that sourcedIds should never contain PII in general, but particularly users. This means that if a customer includes a student name in an enrollment.sourcedId, it will not fall to any certified product to protect the enrollment.sourcedId as PII, or even the userSourcedId field in the enrollment record.'
+      attributes:
+        properties:
+          status:
+            description: 'All objects MUST BE either ''active'' or ''tobedeleted''. Something which is flagged ''tobedeleted'' is to be considered safe to delete. Systems can delete records that are flagged as such if they wish, but they are not under any compulsion to do so.'
+            type: string
+            enum:
+              - ACTIVE
+              - TOBEDELETED
+          dateLastModified:
+            description: 'Model Primitive Datatype = DateTime. All objects MUST be annotated with the dateTime upon which they were last modified. This enables requesters to query for just the latest objects. DateTimes MUST be expressed in W3C profile of [ISO 8601] and MUST contain the UTC timezone.'
+            type: string
+            format: date-time
+          metadata:
+            $ref: '#/definitions/MetadataDType'
+          formattedName:
+            description: ...tbd (ComplexType property description)...
+            type: array
+            minItems: 1
+            items:
+              $ref: '#/definitions/FormattedNameDType'
+          name:
+            description: ...tbd (ComplexType property description)...
+            type: array
+            minItems: 1
+            items:
+              $ref: '#/definitions/NameDType'
+          address:
+            description: ...tbd (ComplexType property description)...
+            type: array
+            minItems: 0
+            items:
+              $ref: '#/definitions/AddressDType'
+          contactInfo:
+            description: ...tbd (ComplexType property description)...
+            type: array
+            minItems: 0
+            items:
+              $ref: '#/definitions/ContactInfoDType'
+          demographics:
+            $ref: '#/definitions/DemographicsDType'
+          role:
+            description: ...tbd (ComplexType property description)...
+            type: array
+            minItems: 0
+            items:
+              $ref: '#/definitions/RoleDType'
+          agent:
+            description: ...tbd (ComplexType property description)...
+            type: array
+            minItems: 0
+            items:
+              $ref: '#/definitions/AgentDType'
+          credentials:
+            description: ...tbd (ComplexType property description)...
+            type: array
+            minItems: 0
+            items:
+              $ref: '#/definitions/CredentialsDType'
+        required:
+          - sourcedId
+          - status
+          - dateLastModified
+          - formattedName
+          - name
+        additionalProperties: false
   PersonSetResult:
     description: ...tbd (Class description)...
     type: object
