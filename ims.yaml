@@ -28,7 +28,7 @@ paths:
         - PersonsManagement
       description: ...not supplied...
       parameters:
-        - name: limit
+        - name: Limit
           in: query
           description: To define the download segmentation value i.e. the maximum number of records to be contained in the response.
           required: false
@@ -37,7 +37,7 @@ paths:
           default: 100
           minimum: 1
           allowEmptyValue: false
-        - name: offset
+        - name: Offset
           in: query
           description: The number of the first record to be supplied in the segmented response message.
           required: false
@@ -46,7 +46,7 @@ paths:
           default: 0
           minimum: 0
           allowEmptyValue: false
-        - name: sort
+        - name: Sort
           in: query
           description: 'Identifies the sort criteria to be used for the records in the response. Multiple criteria should be comma-seperated (U+002C COMMA, “,”) and are applied in the order provided. Each field defaults to ascending order, unless prefixed with U+002D HYPHEN-MINUS, “-“ to indicate descending order.'
           required: false
@@ -55,7 +55,7 @@ paths:
             type: string
           collectionFormat: csv
           allowEmptyValue: false
-        - name: filter
+        - name: Filter
           in: query
           description: 'Identifies filter critera to be used for the records in the response.Multiple criteria should be comma-seperated (U+002C COMMA, “,”).'
           required: false
@@ -64,7 +64,7 @@ paths:
             type: string
           collectionFormat: csv
           allowEmptyValue: false
-        - name: fields
+        - name: Fields
           in: query
           description: To identify the range of fields that should be supplied in the response message.
           required: false
