@@ -5,7 +5,7 @@ info:
   description: The EDU-API Person 1.0 service binding is available in REST/JSON. The model is based upon the IMS PSM modelling approach.
   termsOfService: 'Permission is granted to all parties to use excerpts from this document as needed in producing requests for proposals. The limited permissions granted above are perpetual and will not be revoked by IMS or its successors or assigns. THIS API DEFINITION IS BEING OFFERED WITHOUT ANY WARRANTY WHATSOEVER, AND IN PARTICULAR, ANY WARRANTY OF NONINFRINGEMENT IS EXPRESSLY DISCLAIMED. ANY USE OF THIS SPECIFICATION SHALL BE MADE ENTIRELY AT THE IMPLEMENTERS OWN RISK, AND NEITHER THE  CONSORTIUM, NOR ANY OF ITS MEMBERS OR SUBMITTERS, SHALL HAVE ANY LIABILITY WHATSOEVER TO ANY IMPLEMENTER OR THIRD PARTY FOR ANY DAMAGES OF ANY NATURE WHATSOEVER,  DIRECTLY OR INDIRECTLY, ARISING FROM THE USE OF THIS API DEFINITION.'
   contact:
-    name: 'Lisa Mattson (COO), IMS Global '
+    name: 'Lisa Mattson (COO), IMS Global'
     url: 'http://www.imsglobal.org'
     email: lmattson@imsglobal.org
   license:
@@ -457,7 +457,7 @@ definitions:
         type: object
         properties:
           status:
-            description: 'All objects MUST BE either ''active'' or ''tobedeleted''. Something which is flagged ''tobedeleted'' is to be considered safe to delete. Systems can delete records that are flagged as such if they wish, but they are not under any compulsion to do so.'
+            description: "All objects MUST BE either 'active' or tobedeleted. Something which is flagged 'tobedeleted' is to be considered safe to delete. Systems can delete records that are flagged as such if they wish, but they are not under any compulsion to do so."
             type: string
             enum:
               - ACTIVE
@@ -634,7 +634,7 @@ responses:
     schema:
       $ref: '#/definitions/ErrorResult'
   '401':
-    description: "The request was not correctly authorised i.e. 'unauthorisedrequest."
+    description: "The request was not correctly authorised i.e. 'unauthorisedrequest'."
     schema:
       $ref: '#/definitions/ErrorResult'
   '403':
