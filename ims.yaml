@@ -451,6 +451,8 @@ definitions:
         type: string
         enum:
           - object
+      meta:
+        $ref: '#/definitions/MetadataResource'
       attributes:
         type: object
         properties:
@@ -520,8 +522,6 @@ definitions:
     properties:
       data:
         $ref: '#/definitions/PersonResource'
-      meta:
-        $ref: '#/definitions/MetadataResource'
     additionalProperties: false
   PersonSetResult:
     description: ...tbd (Class description)...
