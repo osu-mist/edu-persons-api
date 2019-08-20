@@ -518,8 +518,6 @@ definitions:
             description: 'Model Primitive Datatype = DateTime. All objects MUST be annotated with the dateTime upon which they were last modified. This enables requesters to query for just the latest objects. DateTimes MUST be expressed in W3C profile of [ISO 8601] and MUST contain the UTC timezone.'
             type: string
             format: date-time
-          metadata:
-            $ref: '#/definitions/MetadataResource'
           formattedName:
             description: ...tbd (ComplexType property description)...
             type: array
@@ -571,12 +569,16 @@ definitions:
           - formattedName
           - name
         additionalProperties: false
+    meta:
+      $ref: '#/definitions/MetadataResource'
   PersonResult:
     description: ...tbd (Class description)...
     type: object
     properties:
       data:
         $ref: '#/definitions/PersonResource'
+      meta:
+        $ref: '#/definitions/MetadataResource'
     additionalProperties: false
   PersonSetResult:
     description: ...tbd (Class description)...
