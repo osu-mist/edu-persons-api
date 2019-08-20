@@ -248,7 +248,7 @@ paths:
           schema:
             $ref: '#/definitions/ErrorResult'
 definitions:
-  AddressDType:
+  AddressResource:
     description: ...tbd (Class description)...
     type: object
     properties:
@@ -261,20 +261,20 @@ definitions:
           - PRIVATE_PRIMARY
           - ...tbc...
       language:
-        description: Model Primitive Datatype = NormalizedString. ...tbd (DerivedType property description)...
+        description: Model Primitive Datatype = NormalizedString. ...tbd (DeriveResource property description)...
         type: string
       addressPart:
         description: ...tbd (ComplexType property description)...
         type: array
         minItems: 1
         items:
-          $ref: '#/definitions/AddressPartDType'
+          $ref: '#/definitions/AddressPartResource'
     required:
       - addressType
       - language
       - addressPart
     additionalProperties: false
-  AddressPartDType:
+  AddressPartResource:
     description: ...tbd (Class description)...
     type: object
     properties:
@@ -293,7 +293,7 @@ definitions:
       - addressPartTypeEnum
       - address
     additionalProperties: false
-  AgentDType:
+  AgentResource:
     description: ...tbd (Class description)...
     type: object
     properties:
@@ -305,10 +305,10 @@ definitions:
           - PARENT
           - ...tbc...
       language:
-        description: Model Primitive Datatype = NormalizedString. ...tbd (DerivedType property description)...
+        description: Model Primitive Datatype = NormalizedString. ...tbd (DeriveResource property description)...
         type: string
       agentId:
-        $ref: '#/definitions/GUIDRefDType'
+        $ref: '#/definitions/GUIDRefResource'
       agentDomain:
         description: Model Primitive Datatype = NormalizedString. ...tbd (PrimitiveType description)...
         type: string
@@ -321,7 +321,7 @@ definitions:
       - agentId
       - agentDomain
     additionalProperties: false
-  ContactInfoDType:
+  ContactInfoResource:
     description: ...tbd (Class description)...
     type: object
     properties:
@@ -344,7 +344,7 @@ definitions:
       - contactInfoType
       - contactInfo
     additionalProperties: false
-  CredentialsDType:
+  CredentialsResource:
     description: ...tbd (Class description)...
     type: object
     properties:
@@ -358,7 +358,7 @@ definitions:
       - type
       - username
     additionalProperties: false
-  DemographicsDType:
+  DemographicsResource:
     description: ...tbd (Class description)...
     type: object
     properties:
@@ -367,13 +367,13 @@ definitions:
         type: string
         format: date
       sex:
-        $ref: '#/definitions/LocalizedStringDType'
+        $ref: '#/definitions/LocalizedStringResource'
       countryOfBirth:
-        $ref: '#/definitions/LocalizedStringDType'
+        $ref: '#/definitions/LocalizedStringResource'
       cityOfBirth:
-        $ref: '#/definitions/LocalizedStringDType'
+        $ref: '#/definitions/LocalizedStringResource'
     additionalProperties: false
-  FormattedNameDType:
+  FormattedNameResource:
     description: ...tbd (Class description)...
     type: object
     properties:
@@ -386,12 +386,12 @@ definitions:
           - PREFERRED
           - ...tbc...
       formattedName:
-        $ref: '#/definitions/LocalizedStringDType'
+        $ref: '#/definitions/LocalizedStringResource'
     required:
       - formattedNameType
       - formattedName
     additionalProperties: false
-  GUIDRefDType:
+  GUIDRefResource:
     description: The data-type for establishing a Globally Unique Identifier (GUID). This is the data-type used for a 'sourcedId'. There is no predefined structure for the GUID.
     type: object
     properties:
@@ -417,7 +417,7 @@ definitions:
       - sourcedId
       - type
     additionalProperties: false
-  LanguageStringDType:
+  LanguageStringResource:
     description: ...tbd (Class description)...
     type: object
     properties:
@@ -431,7 +431,7 @@ definitions:
       - language
       - string
     additionalProperties: false
-  LocalizedStringDType:
+  LocalizedStringResource:
     description: ...tbd (Class description)...
     type: object
     properties:
@@ -440,16 +440,16 @@ definitions:
         type: array
         minItems: 1
         items:
-          $ref: '#/definitions/LanguageStringDType'
+          $ref: '#/definitions/LanguageStringResource'
     required:
       - languageString
     additionalProperties: false
-  MetadataDType:
+  MetadataResource:
     description: This is the container for the data model extensions that may be assigned to the associated class of objects.
     type: object
     properties: {}
     additionalProperties: true
-  NameDType:
+  NameResource:
     description: ...tbd (Class description)...
     type: object
     properties:
@@ -462,20 +462,20 @@ definitions:
           - PREFERRED
           - ...tbc...
       language:
-        description: Model Primitive Datatype = NormalizedString. ...tbd (DerivedType property description)...
+        description: Model Primitive Datatype = NormalizedString. ...tbd (DeriveResource property description)...
         type: string
       namePart:
         description: ...tbd (ComplexType property description)...
         type: array
         minItems: 1
         items:
-          $ref: '#/definitions/NamePartDType'
+          $ref: '#/definitions/NamePartResource'
     required:
       - nameType
       - language
       - namePart
     additionalProperties: false
-  NamePartDType:
+  NamePartResource:
     description: ...tbd (Class description)...
     type: object
     properties:
@@ -506,6 +506,7 @@ definitions:
         enum:
           - object
       attributes:
+        type: object
         properties:
           status:
             description: 'All objects MUST BE either ''active'' or ''tobedeleted''. Something which is flagged ''tobedeleted'' is to be considered safe to delete. Systems can delete records that are flagged as such if they wish, but they are not under any compulsion to do so.'
@@ -518,51 +519,51 @@ definitions:
             type: string
             format: date-time
           metadata:
-            $ref: '#/definitions/MetadataDType'
+            $ref: '#/definitions/MetadataResource'
           formattedName:
             description: ...tbd (ComplexType property description)...
             type: array
             minItems: 1
             items:
-              $ref: '#/definitions/FormattedNameDType'
+              $ref: '#/definitions/FormattedNameResource'
           name:
             description: ...tbd (ComplexType property description)...
             type: array
             minItems: 1
             items:
-              $ref: '#/definitions/NameDType'
+              $ref: '#/definitions/NameResource'
           address:
             description: ...tbd (ComplexType property description)...
             type: array
             minItems: 0
             items:
-              $ref: '#/definitions/AddressDType'
+              $ref: '#/definitions/AddressResource'
           contactInfo:
             description: ...tbd (ComplexType property description)...
             type: array
             minItems: 0
             items:
-              $ref: '#/definitions/ContactInfoDType'
+              $ref: '#/definitions/ContactInfoResource'
           demographics:
-            $ref: '#/definitions/DemographicsDType'
+            $ref: '#/definitions/DemographicsResource'
           role:
             description: ...tbd (ComplexType property description)...
             type: array
             minItems: 0
             items:
-              $ref: '#/definitions/RoleDType'
+              $ref: '#/definitions/RoleResource'
           agent:
             description: ...tbd (ComplexType property description)...
             type: array
             minItems: 0
             items:
-              $ref: '#/definitions/AgentDType'
+              $ref: '#/definitions/AgentResource'
           credentials:
             description: ...tbd (ComplexType property description)...
             type: array
             minItems: 0
             items:
-              $ref: '#/definitions/CredentialsDType'
+              $ref: '#/definitions/CredentialsResource'
         required:
           - sourcedId
           - status
@@ -587,7 +588,7 @@ definitions:
         items:
           $ref: '#/definitions/PersonResource'
     additionalProperties: false
-  RoleDType:
+  RoleResource:
     description: ...tbd (Class description)...
     type: object
     properties:
@@ -607,13 +608,13 @@ definitions:
           - PARENT
           - ...tbc...
       organization:
-        $ref: '#/definitions/GUIDRefDType'
+        $ref: '#/definitions/GUIDRefResource'
     required:
       - roleType
       - role
       - organization
     additionalProperties: false
-  imsx_CodeMinorDType:
+  imsx_CodeMinorResource:
     description: This is the container for the set of code minor status codes reported in the responses from the Service Provider.
     type: object
     properties:
@@ -622,11 +623,11 @@ definitions:
         type: array
         minItems: 1
         items:
-          $ref: '#/definitions/imsx_CodeMinorFieldDType'
+          $ref: '#/definitions/imsx_CodeMinorFieldResource'
     required:
       - imsx_codeMinorField
     additionalProperties: false
-  imsx_CodeMinorFieldDType:
+  imsx_CodeMinorFieldResource:
     description: This is the container for a single code minor status code.
     type: object
     properties:
