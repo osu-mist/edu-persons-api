@@ -92,7 +92,7 @@ paths:
           $ref: '#/responses/429'
         '500':
           $ref: '#/responses/500'
-  '/persons/{id}':
+  /persons/{id}:
     get:
       operationId: getPerson
       summary: The REST read request message for the getPerson() API call.
