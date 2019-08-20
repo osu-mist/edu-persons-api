@@ -32,7 +32,7 @@ paths:
         - PersonsManagement
       description: ...not supplied...
       parameters:
-        - name: Limit
+        - name: page[limit]
           in: query
           description: To define the download segmentation value i.e. the maximum number of records to be contained in the response.
           required: false
@@ -41,7 +41,7 @@ paths:
           default: 100
           minimum: 1
           allowEmptyValue: false
-        - name: Offset
+        - name: page[offset]
           in: query
           description: The number of the first record to be supplied in the segmented response message.
           required: false
