@@ -19,6 +19,10 @@ schemes:
 tags:
   - name: PersonsManagement
     description: No description supplied.
+consumes:
+  - application/json
+produces:
+  - application/json
 paths:
   /persons:
     get:
@@ -666,7 +670,3 @@ responses:
       more appropriate code i.e. 'internal_server_error'."
     schema:
       $ref: '#/definitions/ErrorResult'
-consumes:
-  - application/json
-produces:
-  - application/json
