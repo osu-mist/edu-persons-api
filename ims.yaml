@@ -648,7 +648,7 @@ responses:
       $ref: '#/definitions/ErrorResult'
   '404':
     description: "Either the supplied identifier is unknown in the Service Provider and so the
-      object could not be changed or an invalid GUID has been supplied. The statement 'Unknown
+      object could not be changed or an invalid id has been supplied. The statement 'Unknown
       Object' should also be presented."
     schema:
       $ref: '#/definitions/ErrorResult'
@@ -661,8 +661,7 @@ responses:
     schema:
       $ref: '#/definitions/ErrorResult'
   '429':
-    description: "The server is receiving too many requests i.e. 'server_busy'. Retry at a later
-      time."
+    description: "The application has submitted too many requests. Retry at a later time."
     schema:
       $ref: '#/definitions/ErrorResult'
   '500':
