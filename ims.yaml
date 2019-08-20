@@ -563,7 +563,6 @@ definitions:
             items:
               $ref: '#/definitions/CredentialsResource'
         required:
-          - sourcedId
           - status
           - dateLastModified
           - formattedName
