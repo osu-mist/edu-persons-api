@@ -148,8 +148,6 @@ paths:
       responses:
         '204':
           description: ...tbd (Response description)...
-        '400':
-          $ref: '#/responses/400'
         '401':
           $ref: '#/responses/401'
         '403':
