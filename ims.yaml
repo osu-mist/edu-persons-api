@@ -79,7 +79,7 @@ paths:
           allowEmptyValue: false
       responses:
         '200':
-          description: The request was successfully completed and a collection has been returned. This would be accompanied by the 'codeMajor/severity' values of 'success/status' and for a REST binding a HTTP code of '200'.
+          description: The request was successfully completed and a collection has been returned.
           schema:
             $ref: '#/definitions/PersonSetResult'
         '400':
@@ -116,7 +116,7 @@ paths:
           allowEmptyValue: false
       responses:
         '200':
-          description: The request was successfully completed and a record has been returned. This would be accompanied by the 'codeMajor/severity' values of 'success/status' and for a REST binding a HTTP code of '200'.
+          description: The request was successfully completed and a record has been returned.
           schema:
             $ref: '#/definitions/PersonResult'
         '400':
