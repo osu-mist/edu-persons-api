@@ -84,6 +84,43 @@ paths:
           $ref: '#/responses/429'
         '500':
           $ref: '#/responses/500'
+    post:
+      operationId: postPerson
+      summary: The REST create request message for the postPerson() API call.
+      tags:
+        - PersonsManagement
+      description: ...not supplied...
+      parameters:
+        - name: person
+          in: body
+          description: ...tbd...
+          required: true
+          schema:
+            $ref: '#/definitions/PersonPostBody'
+      responses:
+        '201':
+          description: ...tbd (Response description)...
+          schema:
+            $ref: '#/definitions/PersonResult'
+          headers:
+            Location:
+              type: string
+              format: uri
+              description: Location of the newly created resource
+        '400':
+          $ref: '#/responses/400'
+        '401':
+          $ref: '#/responses/401'
+        '403':
+          $ref: '#/responses/403'
+        '409':
+          $ref: '#/responses/409'
+        '422':
+          $ref: '#/responses/422'
+        '429':
+          $ref: '#/responses/429'
+        '500':
+          $ref: '#/responses/500'
   /persons/{id}:
     get:
       operationId: getPerson
@@ -521,6 +558,28 @@ definitions:
           attributes:
             type: object
             properties: *PersonProperties
+    PersonPostBody:
+      type: object
+      required:
+        - data
+      additionalProperties: false
+      properties:
+        data:
+          type: object
+          required:
+            - type
+            - attributes
+          properties:
+            type: *PersonType
+            attributes:
+              type: object
+              required:
+                - sourcedId
+                - status
+                - dateLastModified
+                - formattedName
+                - name
+              properties: *PersonProperties
   PersonResult:
     description: ...tbd (Class description)...
     type: object
