@@ -534,11 +534,6 @@ definitions:
             minItems: 0
             items:
               $ref: '#/definitions/CredentialsDType'
-        required:
-          - status
-          - dateLastModified
-          - formattedName
-          - name
         additionalProperties: false
   PersonPatchBody:
     type: object
@@ -574,7 +569,6 @@ definitions:
             attributes:
               type: object
               required:
-                - sourcedId
                 - status
                 - dateLastModified
                 - formattedName
