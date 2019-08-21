@@ -161,7 +161,7 @@ paths:
           description: ...tbd...
           required: true
           schema:
-            $ref: '#/definitions/PersonResource'
+            $ref: '#/definitions/PersonPatchBody'
       responses:
         '200':
           description: ...tbd (Response description)...
@@ -182,7 +182,7 @@ paths:
         '500':
           $ref: '#/responses/500'
 definitions:
-  AddressResource:
+  AddressDType:
     description: ...tbd (Class description)...
     type: object
     properties:
@@ -202,13 +202,13 @@ definitions:
         type: array
         minItems: 1
         items:
-          $ref: '#/definitions/AddressPartResource'
+          $ref: '#/definitions/AddressPartDType'
     required:
       - addressType
       - language
       - addressPart
     additionalProperties: false
-  AddressPartResource:
+  AddressPartDType:
     description: ...tbd (Class description)...
     type: object
     properties:
@@ -227,7 +227,7 @@ definitions:
       - addressPartTypeEnum
       - address
     additionalProperties: false
-  AgentResource:
+  AgentDType:
     description: ...tbd (Class description)...
     type: object
     properties:
@@ -242,7 +242,7 @@ definitions:
         description: Model Primitive Datatype = NormalizedString. ...tbd (DeriveResource property description)...
         type: string
       agentId:
-        $ref: '#/definitions/GUIDRefResource'
+        $ref: '#/definitions/GUIDRefDType'
       agentDomain:
         description: Model Primitive Datatype = NormalizedString. ...tbd (PrimitiveType description)...
         type: string
@@ -255,7 +255,7 @@ definitions:
       - agentId
       - agentDomain
     additionalProperties: false
-  ContactInfoResource:
+  ContactInfoDType:
     description: ...tbd (Class description)...
     type: object
     properties:
@@ -278,7 +278,7 @@ definitions:
       - contactInfoType
       - contactInfo
     additionalProperties: false
-  CredentialsResource:
+  CredentialsDType:
     description: ...tbd (Class description)...
     type: object
     properties:
@@ -292,7 +292,7 @@ definitions:
       - type
       - username
     additionalProperties: false
-  DemographicsResource:
+  DemographicsDType:
     description: ...tbd (Class description)...
     type: object
     properties:
@@ -301,13 +301,13 @@ definitions:
         type: string
         format: date
       sex:
-        $ref: '#/definitions/LocalizedStringResource'
+        $ref: '#/definitions/LocalizedStringDType'
       countryOfBirth:
-        $ref: '#/definitions/LocalizedStringResource'
+        $ref: '#/definitions/LocalizedStringDType'
       cityOfBirth:
-        $ref: '#/definitions/LocalizedStringResource'
+        $ref: '#/definitions/LocalizedStringDType'
     additionalProperties: false
-  FormattedNameResource:
+  FormattedNameDType:
     description: ...tbd (Class description)...
     type: object
     properties:
@@ -320,12 +320,12 @@ definitions:
           - PREFERRED
           - ...tbc...
       formattedName:
-        $ref: '#/definitions/LocalizedStringResource'
+        $ref: '#/definitions/LocalizedStringDType'
     required:
       - formattedNameType
       - formattedName
     additionalProperties: false
-  GUIDRefResource:
+  GUIDRefDType:
     description: The data-type for establishing a Globally Unique Identifier (GUID). This is the data-type used for a 'sourcedId'. There is no predefined structure for the GUID.
     type: object
     properties:
@@ -351,7 +351,7 @@ definitions:
       - sourcedId
       - type
     additionalProperties: false
-  LanguageStringResource:
+  LanguageStringDType:
     description: ...tbd (Class description)...
     type: object
     properties:
@@ -365,7 +365,7 @@ definitions:
       - language
       - string
     additionalProperties: false
-  LocalizedStringResource:
+  LocalizedStringDType:
     description: ...tbd (Class description)...
     type: object
     properties:
@@ -374,16 +374,16 @@ definitions:
         type: array
         minItems: 1
         items:
-          $ref: '#/definitions/LanguageStringResource'
+          $ref: '#/definitions/LanguageStringDType'
     required:
       - languageString
     additionalProperties: false
-  MetadataResource:
+  MetadataDType:
     description: This is the container for the data model extensions that may be assigned to the associated class of objects.
     type: object
     properties: {}
     additionalProperties: true
-  NameResource:
+  NameDType:
     description: ...tbd (Class description)...
     type: object
     properties:
@@ -403,13 +403,13 @@ definitions:
         type: array
         minItems: 1
         items:
-          $ref: '#/definitions/NamePartResource'
+          $ref: '#/definitions/NamePartDType'
     required:
       - nameType
       - language
       - namePart
     additionalProperties: false
-  NamePartResource:
+  NamePartDType:
     description: ...tbd (Class description)...
     type: object
     properties:
@@ -439,7 +439,7 @@ definitions:
         type: string
         enum: [object]
       meta:
-        $ref: '#/definitions/MetadataResource'
+        $ref: '#/definitions/MetadataDType'
       attributes:
         type: object
         properties: &PersonProperties
@@ -458,45 +458,45 @@ definitions:
             type: array
             minItems: 1
             items:
-              $ref: '#/definitions/FormattedNameResource'
+              $ref: '#/definitions/FormattedNameDType'
           name:
             description: ...tbd (ComplexType property description)...
             type: array
             minItems: 1
             items:
-              $ref: '#/definitions/NameResource'
+              $ref: '#/definitions/NameDType'
           address:
             description: ...tbd (ComplexType property description)...
             type: array
             minItems: 0
             items:
-              $ref: '#/definitions/AddressResource'
+              $ref: '#/definitions/AddressDType'
           contactInfo:
             description: ...tbd (ComplexType property description)...
             type: array
             minItems: 0
             items:
-              $ref: '#/definitions/ContactInfoResource'
+              $ref: '#/definitions/ContactInfoDType'
           demographics:
-            $ref: '#/definitions/DemographicsResource'
+            $ref: '#/definitions/DemographicsDType'
           role:
             description: ...tbd (ComplexType property description)...
             type: array
             minItems: 0
             items:
-              $ref: '#/definitions/RoleResource'
+              $ref: '#/definitions/RoleDType'
           agent:
             description: ...tbd (ComplexType property description)...
             type: array
             minItems: 0
             items:
-              $ref: '#/definitions/AgentResource'
+              $ref: '#/definitions/AgentDType'
           credentials:
             description: ...tbd (ComplexType property description)...
             type: array
             minItems: 0
             items:
-              $ref: '#/definitions/CredentialsResource'
+              $ref: '#/definitions/CredentialsDType'
         required:
           - status
           - dateLastModified
@@ -538,7 +538,7 @@ definitions:
         items:
           $ref: '#/definitions/PersonResource'
     additionalProperties: false
-  RoleResource:
+  RoleDType:
     description: ...tbd (Class description)...
     type: object
     properties:
@@ -558,7 +558,7 @@ definitions:
           - PARENT
           - ...tbc...
       organization:
-        $ref: '#/definitions/GUIDRefResource'
+        $ref: '#/definitions/GUIDRefDType'
     required:
       - roleType
       - role
