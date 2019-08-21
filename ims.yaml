@@ -50,7 +50,7 @@ paths:
           default: 0
           minimum: 0
           allowEmptyValue: false
-        - name: Sort
+        - name: sort
           in: query
           description: 'Identifies the sort criteria to be used for the records in the response. Multiple criteria should be comma-seperated (U+002C COMMA, “,”) and are applied in the order provided. Each field defaults to ascending order, unless prefixed with U+002D HYPHEN-MINUS, “-“ to indicate descending order.'
           required: false
@@ -59,7 +59,7 @@ paths:
             type: string
           collectionFormat: csv
           allowEmptyValue: false
-        - name: Filter
+        - name: filter
           in: query
           description: 'Identifies filter critera to be used for the records in the response.Multiple criteria should be comma-seperated (U+002C COMMA, “,”).'
           required: false
@@ -68,7 +68,7 @@ paths:
             type: string
           collectionFormat: csv
           allowEmptyValue: false
-        - name: Fields
+        - name: fields
           in: query
           description: To identify the range of fields that should be supplied in the response message.
           required: false
