@@ -553,27 +553,27 @@ definitions:
           attributes:
             type: object
             properties: *PersonProperties
-    PersonPostBody:
-      type: object
-      required:
-        - data
-      additionalProperties: false
-      properties:
-        data:
-          type: object
-          required:
-            - type
-            - attributes
-          properties:
-            type: *PersonType
-            attributes:
-              type: object
-              required:
-                - status
-                - dateLastModified
-                - formattedName
-                - name
-              properties: *PersonProperties
+  PersonPostBody:
+    type: object
+    required:
+      - data
+    additionalProperties: false
+    properties:
+      data:
+        type: object
+        required:
+          - type
+          - attributes
+        properties:
+          type: *PersonType
+          attributes:
+            type: object
+            required:
+              - status
+              - dateLastModified
+              - formattedName
+              - name
+            properties: *PersonProperties
   PersonResult:
     description: ...tbd (Class description)...
     type: object
