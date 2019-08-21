@@ -68,15 +68,7 @@ paths:
             type: string
           collectionFormat: csv
           allowEmptyValue: false
-        - name: fields
-          in: query
-          description: To identify the range of fields that should be supplied in the response message.
-          required: false
-          type: array
-          items:
-            type: string
-          collectionFormat: csv
-          allowEmptyValue: false
+        - $ref: '#/parameters/fields'
       responses:
         '200':
           description: The request was successfully completed and a collection has been returned.
@@ -105,15 +97,7 @@ paths:
           description: ...tbd...
           required: true
           type: string
-        - name: fields
-          in: query
-          description: To identify the range of fields that should be supplied in the response message.
-          required: false
-          type: array
-          items:
-            type: string
-          collectionFormat: csv
-          allowEmptyValue: false
+        - $ref: '#/parameters/fields'
       responses:
         '200':
           description: The request was successfully completed and a record has been returned.
@@ -628,6 +612,17 @@ definitions:
         type: array
         items:
           $ref: '#/definitions/ErrorObject'
+parameters:
+  fields:
+    name: fields
+    in: query
+    description: To identify the range of fields that should be supplied in the response message.
+    required: false
+    type: array
+    items:
+      type: string
+    collectionFormat: csv
+    allowEmptyValue: false
 responses:
   '400':
     description: "Either an invalid selection field or invalid filter selection was supplied and
