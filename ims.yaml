@@ -1,0 +1,698 @@
+swagger: '2.0'
+info:
+  version: '1.0'
+  title: EDU-API OpenAPI (JSON) Definition
+  description: The EDU-API Person 1.0 service binding is available in REST/JSON. The model is based upon the IMS PSM modelling approach.
+  termsOfService: 'Permission is granted to all parties to use excerpts from this document as needed in producing requests for proposals. The limited permissions granted above are perpetual and will not be revoked by IMS or its successors or assigns. THIS API DEFINITION IS BEING OFFERED WITHOUT ANY WARRANTY WHATSOEVER, AND IN PARTICULAR, ANY WARRANTY OF NONINFRINGEMENT IS EXPRESSLY DISCLAIMED. ANY USE OF THIS SPECIFICATION SHALL BE MADE ENTIRELY AT THE IMPLEMENTERS OWN RISK, AND NEITHER THE  CONSORTIUM, NOR ANY OF ITS MEMBERS OR SUBMITTERS, SHALL HAVE ANY LIABILITY WHATSOEVER TO ANY IMPLEMENTER OR THIRD PARTY FOR ANY DAMAGES OF ANY NATURE WHATSOEVER,  DIRECTLY OR INDIRECTLY, ARISING FROM THE USE OF THIS API DEFINITION.'
+  contact:
+    name: 'Lisa Mattson (COO), IMS Global'
+    url: 'http://www.imsglobal.org'
+    email: lmattson@imsglobal.org
+  license:
+    name: IMS Global
+    url: 'https://www.imsglobal.org/license.html'
+host: www.imsglobal.org
+basePath: /ims/eduapi/v1p0
+schemes:
+  - http
+  - https
+tags:
+  - name: PersonsManagement
+    description: No description supplied.
+consumes:
+  - application/json
+produces:
+  - application/json
+paths:
+  /persons:
+    get:
+      operationId: getAllPersons
+      summary: The REST read request message for the getAllPersons() API call.
+      tags:
+        - PersonsManagement
+      description: ...not supplied...
+      parameters:
+        - name: page[limit]
+          in: query
+          description: To define the download segmentation value i.e. the maximum number of records to be contained in the response.
+          required: false
+          type: integer
+          format: int32
+          default: 100
+          minimum: 1
+          allowEmptyValue: false
+        - name: page[offset]
+          in: query
+          description: The number of the first record to be supplied in the segmented response message.
+          required: false
+          type: integer
+          format: int32
+          default: 0
+          minimum: 0
+          allowEmptyValue: false
+        - name: sort
+          in: query
+          description: 'Identifies the sort criteria to be used for the records in the response. Multiple criteria should be comma-seperated (U+002C COMMA, “,”) and are applied in the order provided. Each field defaults to ascending order, unless prefixed with U+002D HYPHEN-MINUS, “-“ to indicate descending order.'
+          required: false
+          type: array
+          items:
+            type: string
+          collectionFormat: csv
+          allowEmptyValue: false
+        - name: filter
+          in: query
+          description: 'Identifies filter critera to be used for the records in the response.Multiple criteria should be comma-seperated (U+002C COMMA, “,”).'
+          required: false
+          type: array
+          items:
+            type: string
+          collectionFormat: csv
+          allowEmptyValue: false
+        - $ref: '#/parameters/fields'
+      responses:
+        '200':
+          description: The request was successfully completed and a collection has been returned.
+          schema:
+            $ref: '#/definitions/PersonSetResult'
+        '400':
+          $ref: '#/responses/400'
+        '401':
+          $ref: '#/responses/401'
+        '403':
+          $ref: '#/responses/403'
+        '429':
+          $ref: '#/responses/429'
+        '500':
+          $ref: '#/responses/500'
+    post:
+      operationId: postPerson
+      summary: The REST create request message for the postPerson() API call.
+      tags:
+        - PersonsManagement
+      description: ...not supplied...
+      parameters:
+        - name: person
+          in: body
+          description: ...tbd...
+          required: true
+          schema:
+            $ref: '#/definitions/PersonPostBody'
+      responses:
+        '201':
+          description: ...tbd (Response description)...
+          schema:
+            $ref: '#/definitions/PersonResult'
+          headers:
+            Location:
+              type: string
+              format: uri
+              description: Location of the newly created resource
+        '400':
+          $ref: '#/responses/400'
+        '401':
+          $ref: '#/responses/401'
+        '403':
+          $ref: '#/responses/403'
+        '409':
+          $ref: '#/responses/409'
+        '422':
+          $ref: '#/responses/422'
+        '429':
+          $ref: '#/responses/429'
+        '500':
+          $ref: '#/responses/500'
+  /persons/{id}:
+    get:
+      operationId: getPerson
+      summary: The REST read request message for the getPerson() API call.
+      tags:
+        - PersonsManagement
+      description: ...not supplied...
+      parameters:
+        - name: id
+          in: path
+          description: ...tbd...
+          required: true
+          type: string
+        - $ref: '#/parameters/fields'
+      responses:
+        '200':
+          description: The request was successfully completed and a record has been returned.
+          schema:
+            $ref: '#/definitions/PersonResult'
+        '400':
+          $ref: '#/responses/400'
+        '401':
+          $ref: '#/responses/401'
+        '403':
+          $ref: '#/responses/403'
+        '404':
+          $ref: '#/responses/404'
+        '422':
+          $ref: '#/responses/422'
+        '429':
+          $ref: '#/responses/429'
+        '500':
+          $ref: '#/responses/500'
+    delete:
+      operationId: deletePerson
+      summary: The REST delete request message for the deletePerson() API call.
+      tags:
+        - PersonsManagement
+      description: ...not supplied...
+      parameters:
+        - name: id
+          in: path
+          description: ...tbd...
+          required: true
+          type: string
+      responses:
+        '204':
+          description: ...tbd (Response description)...
+        '401':
+          $ref: '#/responses/401'
+        '403':
+          $ref: '#/responses/403'
+        '404':
+          $ref: '#/responses/404'
+        '422':
+          $ref: '#/responses/422'
+        '429':
+          $ref: '#/responses/429'
+        '500':
+          $ref: '#/responses/500'
+    patch:
+      operationId: patchPerson
+      summary: The REST create request message for the patchPerson() API call.
+      tags:
+        - PersonsManagement
+      description: ...not supplied...
+      parameters:
+        - name: id
+          in: path
+          description: ...tbd...
+          required: true
+          type: string
+        - name: person
+          in: body
+          description: ...tbd...
+          required: true
+          schema:
+            $ref: '#/definitions/PersonPatchBody'
+      responses:
+        '200':
+          description: ...tbd (Response description)...
+          schema:
+            $ref: '#/definitions/PersonResult'
+        '400':
+          $ref: '#/responses/400'
+        '401':
+          $ref: '#/responses/401'
+        '403':
+          $ref: '#/responses/403'
+        '404':
+          $ref: '#/responses/404'
+        '422':
+          $ref: '#/responses/422'
+        '429':
+          $ref: '#/responses/429'
+        '500':
+          $ref: '#/responses/500'
+definitions:
+  AddressDType:
+    description: ...tbd (Class description)...
+    type: object
+    properties:
+      addressType:
+        description: ...tbd (Enumeration description)...
+        type: string
+        enum:
+          - CAMPUS_PRIMARY
+          - MAILING_PRIMARY
+          - PRIVATE_PRIMARY
+          - ...tbc...
+      language:
+        description: Model Primitive Datatype = NormalizedString. ...tbd (DeriveResource property description)...
+        type: string
+      addressPart:
+        description: ...tbd (ComplexType property description)...
+        type: array
+        minItems: 1
+        items:
+          $ref: '#/definitions/AddressPartDType'
+    required:
+      - addressType
+      - language
+      - addressPart
+    additionalProperties: false
+  AddressPartDType:
+    description: ...tbd (Class description)...
+    type: object
+    properties:
+      addressPartTypeEnum:
+        description: ...tbd (Enumeration description)...
+        type: string
+        enum:
+          - POBOX
+          - POSTCODE
+          - NON_FIELDED_STREET_ADDRESS1
+          - ...tbc...
+      address:
+        description: Model Primitive Datatype = NormalizedString. ...tbd (PrimitiveType description)...
+        type: string
+    required:
+      - addressPartTypeEnum
+      - address
+    additionalProperties: false
+  AgentDType:
+    description: ...tbd (Class description)...
+    type: object
+    properties:
+      agentType:
+        description: ...tbd (Enumeration description)...
+        type: string
+        enum:
+          - GUARDIAN
+          - PARENT
+          - ...tbc...
+      language:
+        description: Model Primitive Datatype = NormalizedString. ...tbd (DeriveResource property description)...
+        type: string
+      agentId:
+        $ref: '#/definitions/GUIDRefDType'
+      agentDomain:
+        description: Model Primitive Datatype = NormalizedString. ...tbd (PrimitiveType description)...
+        type: string
+      description:
+        description: Model Primitive Datatype = String. ...tbd (PrimitiveType description)...
+        type: string
+    required:
+      - agentType
+      - language
+      - agentId
+      - agentDomain
+    additionalProperties: false
+  ContactInfoDType:
+    description: ...tbd (Class description)...
+    type: object
+    properties:
+      contactInfoType:
+        description: ...tbd (Enumeration description)...
+        type: string
+        enum:
+          - TELPHONE
+          - TELPHONE_HOME
+          - TELPHONE_PRIMARY
+          - TELPHONE_WORK
+          - TELPHONE_HOME_PRIMARY
+          - TELPHONE_HOME_SECONDARY
+          - TELPHONE_SECONDARY
+          - ...tbc...
+      contactInfo:
+        description: Model Primitive Datatype = NormalizedString. ...tbd (PrimitiveType description)...
+        type: string
+    required:
+      - contactInfoType
+      - contactInfo
+    additionalProperties: false
+  CredentialsDType:
+    description: ...tbd (Class description)...
+    type: object
+    properties:
+      type:
+        description: Model Primitive Datatype = NormalizedString. ...tbd (PrimitiveType description)...
+        type: string
+      username:
+        description: Model Primitive Datatype = NormalizedString. ...tbd (PrimitiveType description)...
+        type: string
+    required:
+      - type
+      - username
+    additionalProperties: false
+  DemographicsDType:
+    description: ...tbd (Class description)...
+    type: object
+    properties:
+      dateOfBirth:
+        description: Model Primitive Datatype = Date. ...tbd (PrimitiveType description)...
+        type: string
+        format: date
+      sex:
+        $ref: '#/definitions/LocalizedStringDType'
+      countryOfBirth:
+        $ref: '#/definitions/LocalizedStringDType'
+      cityOfBirth:
+        $ref: '#/definitions/LocalizedStringDType'
+    additionalProperties: false
+  FormattedNameDType:
+    description: ...tbd (Class description)...
+    type: object
+    properties:
+      formattedNameType:
+        description: ...tbd (Enumeration description)...
+        type: string
+        enum:
+          - FULL
+          - FORMER
+          - PREFERRED
+          - ...tbc...
+      formattedName:
+        $ref: '#/definitions/LocalizedStringDType'
+    required:
+      - formattedNameType
+      - formattedName
+    additionalProperties: false
+  GUIDRefDType:
+    description: The data-type for establishing a Globally Unique Identifier (GUID). This is the data-type used for a 'sourcedId'. There is no predefined structure for the GUID.
+    type: object
+    properties:
+      href:
+        description: Model Primitive Datatype = AnyURI. The URI for the type of object being referenced.
+        type: string
+        format: uri
+      sourcedId:
+        description: Model Primitive Datatype = String. The globally unique identifier of the object being referenced.
+        type: string
+      type:
+        description: The type of object being referenced. This is an enumerated vocabulary.
+        type: string
+        enum:
+          - academicSession
+          - education
+          - educationOffering
+          - location
+          - organization
+          - person
+    required:
+      - href
+      - sourcedId
+      - type
+    additionalProperties: false
+  LanguageStringDType:
+    description: ...tbd (Class description)...
+    type: object
+    properties:
+      language:
+        description: Model Primitive Datatype = NormalizedString. ...tbd (PrimitiveType description)...
+        type: string
+      string:
+        description: Model Primitive Datatype = String. ...tbd (PrimitiveType description)...
+        type: string
+    required:
+      - language
+      - string
+    additionalProperties: false
+  LocalizedStringDType:
+    description: ...tbd (Class description)...
+    type: object
+    properties:
+      languageString:
+        description: ...tbd (ComplexType property description)...
+        type: array
+        minItems: 1
+        items:
+          $ref: '#/definitions/LanguageStringDType'
+    required:
+      - languageString
+    additionalProperties: false
+  MetadataDType:
+    description: This is the container for the data model extensions that may be assigned to the associated class of objects.
+    type: object
+    properties: {}
+    additionalProperties: true
+  NameDType:
+    description: ...tbd (Class description)...
+    type: object
+    properties:
+      nameType:
+        description: ...tbd (Enumeration description)...
+        type: string
+        enum:
+          - FULL
+          - FORMER
+          - PREFERRED
+          - ...tbc...
+      language:
+        description: Model Primitive Datatype = NormalizedString. ...tbd (DeriveResource property description)...
+        type: string
+      namePart:
+        description: ...tbd (ComplexType property description)...
+        type: array
+        minItems: 1
+        items:
+          $ref: '#/definitions/NamePartDType'
+    required:
+      - nameType
+      - language
+      - namePart
+    additionalProperties: false
+  NamePartDType:
+    description: ...tbd (Class description)...
+    type: object
+    properties:
+      namePartType:
+        description: ...tbd (Enumeration description)...
+        type: string
+        enum:
+          - FIRST
+          - FAMILY
+          - GIVEN
+          - LAST
+          - ...tbc...
+      name:
+        description: Model Primitive Datatype = NormalizedString. ...tbd (PrimitiveType description)...
+        type: string
+    required:
+      - namePartType
+      - name
+    additionalProperties: false
+  RoleDType:
+    description: ...tbd (Class description)...
+    type: object
+    properties:
+      roleType:
+        description: ...tbd (Enumeration description)...
+        type: string
+        enum:
+          - PRIMARY
+          - SECONDARY
+      role:
+        description: ...tbd (Enumeration description)...
+        type: string
+        enum:
+          - ADMINISTRATOR
+          - AIDE
+          - GUARDIAN
+          - PARENT
+          - ...tbc...
+      organization:
+        $ref: '#/definitions/GUIDRefDType'
+    required:
+      - roleType
+      - role
+      - organization
+    additionalProperties: false
+  PersonResource:
+    description: ...tbd (Class description)...
+    properties:
+      id: &PersonId
+        type: string
+        description: 'A unique identifier. All Objects MUST be identified by a Source Identifier. This is a GUID i.e. a unique system interoperability identifier for an object. This is the GUID that SYSTEMS will refer to when making API calls, or when needing to identify an object. For EDU-API the GUID MUST be a valid UUID.  It is RECOMMENDED that systems are able to map whichever local identifiers (e.g. database key fields) they use to the corresponding SourcedId. The sourcedId of an object is considered an addressable property of an entity and as such will not be treated as Personally Identifiable Information (PII) by certified products. Therefore, as a part of certification, vendors will be required to declare that they will notify customers via documentation or other formal and documented agreement that sourcedIds should never contain PII in general, but particularly users. This means that if a customer includes a student name in an enrollment.sourcedId, it will not fall to any certified product to protect the enrollment.sourcedId as PII, or even the userSourcedId field in the enrollment record.'
+      type: &PersonType
+        type: string
+        enum: [person]
+      meta:
+        $ref: '#/definitions/MetadataDType'
+      attributes:
+        type: object
+        properties: &PersonProperties
+          status:
+            description: "All objects MUST BE either 'active' or tobedeleted. Something which is flagged 'tobedeleted' is to be considered safe to delete. Systems can delete records that are flagged as such if they wish, but they are not under any compulsion to do so."
+            type: string
+            enum:
+              - ACTIVE
+              - TOBEDELETED
+          dateLastModified:
+            description: 'Model Primitive Datatype = DateTime. All objects MUST be annotated with the dateTime upon which they were last modified. This enables requesters to query for just the latest objects. DateTimes MUST be expressed in W3C profile of [ISO 8601] and MUST contain the UTC timezone.'
+            type: string
+            format: date-time
+          formattedName:
+            description: ...tbd (ComplexType property description)...
+            type: array
+            minItems: 1
+            items:
+              $ref: '#/definitions/FormattedNameDType'
+          name:
+            description: ...tbd (ComplexType property description)...
+            type: array
+            minItems: 1
+            items:
+              $ref: '#/definitions/NameDType'
+          address:
+            description: ...tbd (ComplexType property description)...
+            type: array
+            minItems: 0
+            items:
+              $ref: '#/definitions/AddressDType'
+          contactInfo:
+            description: ...tbd (ComplexType property description)...
+            type: array
+            minItems: 0
+            items:
+              $ref: '#/definitions/ContactInfoDType'
+          demographics:
+            $ref: '#/definitions/DemographicsDType'
+          role:
+            description: ...tbd (ComplexType property description)...
+            type: array
+            minItems: 0
+            items:
+              $ref: '#/definitions/RoleDType'
+          agent:
+            description: ...tbd (ComplexType property description)...
+            type: array
+            minItems: 0
+            items:
+              $ref: '#/definitions/AgentDType'
+          credentials:
+            description: ...tbd (ComplexType property description)...
+            type: array
+            minItems: 0
+            items:
+              $ref: '#/definitions/CredentialsDType'
+        additionalProperties: false
+  PersonPatchBody:
+    type: object
+    required:
+      - data
+    additionalProperties: false
+    properties:
+      data:
+        type: object
+        required:
+          - type
+          - id
+          - attributes
+        properties:
+          type: *PersonType
+          id: *PersonId
+          attributes:
+            type: object
+            properties: *PersonProperties
+  PersonPostBody:
+    type: object
+    required:
+      - data
+    additionalProperties: false
+    properties:
+      data:
+        type: object
+        required:
+          - type
+          - attributes
+        properties:
+          type: *PersonType
+          attributes:
+            type: object
+            required:
+              - status
+              - dateLastModified
+              - formattedName
+              - name
+            properties: *PersonProperties
+  PersonResult:
+    description: ...tbd (Class description)...
+    type: object
+    properties:
+      data:
+        $ref: '#/definitions/PersonResource'
+    additionalProperties: false
+  PersonSetResult:
+    description: ...tbd (Class description)...
+    type: object
+    properties:
+      data:
+        type: array
+        minItems: 0
+        items:
+          $ref: '#/definitions/PersonResource'
+    additionalProperties: false
+  ErrorObject:
+    properties:
+      status:
+        type: string
+        description: HTTP status code
+        example: '123'
+      title:
+        type: string
+        description: A short, user readable summary of the error
+        example: Not Found
+      code:
+        type: string
+        description: An application-specific error code
+        example: '1234'
+      detail:
+        type: string
+        description: A long description of the error that may contain instance-specific details
+      links:
+        properties:
+          about:
+            type: string
+            format: url
+            description: A link to further information about the error
+  ErrorResult:
+    properties:
+      errors:
+        type: array
+        items:
+          $ref: '#/definitions/ErrorObject'
+parameters:
+  fields:
+    name: fields
+    in: query
+    description: To identify the range of fields that should be supplied in the response message.
+    required: false
+    type: array
+    items:
+      type: string
+    collectionFormat: csv
+    allowEmptyValue: false
+responses:
+  '400':
+    description: "Either an invalid selection field or invalid filter selection was supplied and
+      data filtering on the selection criteria was not possible i.e. 'invalid_selection_field' or
+      'invalid_filter_field' respectively."
+    schema:
+      $ref: '#/definitions/ErrorResult'
+  '401':
+    description: "The request was not correctly authorised i.e. 'unauthorisedrequest'."
+    schema:
+      $ref: '#/definitions/ErrorResult'
+  '403':
+    description: "This is used to indicate that the server can be reached and process the request
+      but refuses to take any further action i.e. 'forbidden'."
+    schema:
+      $ref: '#/definitions/ErrorResult'
+  '404':
+    description: "Either the supplied identifier is unknown in the Service Provider and so the
+      object could not be changed or an invalid id has been supplied. The statement 'Unknown
+      Object' should also be presented."
+    schema:
+      $ref: '#/definitions/ErrorResult'
+  '409':
+    description: The request body resource object had an invalid type, invalid id, or violated a
+      uniqueness constraint
+  '422':
+    description: This error condition may occur if a JSON request body contains well-formed (i.e.
+      syntactically correct), but semantically erroneous, JSON instructions.
+    schema:
+      $ref: '#/definitions/ErrorResult'
+  '429':
+    description: "The application has submitted too many requests. Retry at a later time."
+    schema:
+      $ref: '#/definitions/ErrorResult'
+  '500':
+    description: "This code should be used only if there is catastrophic error and there is not a
+      more appropriate code i.e. 'internal_server_error'."
+    schema:
+      $ref: '#/definitions/ErrorResult'
