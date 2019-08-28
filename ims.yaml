@@ -466,6 +466,32 @@ definitions:
       - namePartType
       - name
     additionalProperties: false
+  RoleDType:
+    description: ...tbd (Class description)...
+    type: object
+    properties:
+      roleType:
+        description: ...tbd (Enumeration description)...
+        type: string
+        enum:
+          - PRIMARY
+          - SECONDARY
+      role:
+        description: ...tbd (Enumeration description)...
+        type: string
+        enum:
+          - ADMINISTRATOR
+          - AIDE
+          - GUARDIAN
+          - PARENT
+          - ...tbc...
+      organization:
+        $ref: '#/definitions/GUIDRefDType'
+    required:
+      - roleType
+      - role
+      - organization
+    additionalProperties: false
   PersonResource:
     description: ...tbd (Class description)...
     properties:
@@ -590,32 +616,6 @@ definitions:
         minItems: 0
         items:
           $ref: '#/definitions/PersonResource'
-    additionalProperties: false
-  RoleDType:
-    description: ...tbd (Class description)...
-    type: object
-    properties:
-      roleType:
-        description: ...tbd (Enumeration description)...
-        type: string
-        enum:
-          - PRIMARY
-          - SECONDARY
-      role:
-        description: ...tbd (Enumeration description)...
-        type: string
-        enum:
-          - ADMINISTRATOR
-          - AIDE
-          - GUARDIAN
-          - PARENT
-          - ...tbc...
-      organization:
-        $ref: '#/definitions/GUIDRefDType'
-    required:
-      - roleType
-      - role
-      - organization
     additionalProperties: false
   ErrorObject:
     properties:
