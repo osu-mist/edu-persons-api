@@ -500,7 +500,7 @@ definitions:
         description: 'A unique identifier. All Objects MUST be identified by a Source Identifier. This is a GUID i.e. a unique system interoperability identifier for an object. This is the GUID that SYSTEMS will refer to when making API calls, or when needing to identify an object. For EDU-API the GUID MUST be a valid UUID.  It is RECOMMENDED that systems are able to map whichever local identifiers (e.g. database key fields) they use to the corresponding SourcedId. The sourcedId of an object is considered an addressable property of an entity and as such will not be treated as Personally Identifiable Information (PII) by certified products. Therefore, as a part of certification, vendors will be required to declare that they will notify customers via documentation or other formal and documented agreement that sourcedIds should never contain PII in general, but particularly users. This means that if a customer includes a student name in an enrollment.sourcedId, it will not fall to any certified product to protect the enrollment.sourcedId as PII, or even the userSourcedId field in the enrollment record.'
       type: &PersonType
         type: string
-        enum: [object]
+        enum: [person]
       meta:
         $ref: '#/definitions/MetadataDType'
       attributes:
